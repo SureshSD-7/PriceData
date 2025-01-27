@@ -3,11 +3,12 @@ import pandas as pd
 import altair as alt
 from sqlalchemy import create_engine
 
-DB_HOST = "localhost"
-DB_PORT = "5432"
-DB_NAME = "postgres"
+
+DB_HOST = "junction.proxy.rlwy.net"
+DB_PORT = "58724"
+DB_NAME = "railway"
 DB_USER = "postgres"
-DB_PASSWORD = "00000"
+DB_PASSWORD = "UsaIzlkIxYIJLSbwqnwqlHcBqWRaULsa"
 
 # Disable actions (e.g., zoom, pan, reset) for embedded charts
 alt.renderers.set_embed_options(actions=False)
@@ -21,7 +22,7 @@ def fetch_data(query):
     engine = get_db_connection()
     return pd.read_sql(query, engine)
 
-actual_price_query = "SELECT LOWER(material) AS material, record_date AS date, price AS price_actual FROM material_prices;"
+actual_price_query = 'SELECT LOWER(material) AS material, "Date" AS date, "Price" AS price_actual FROM material_price;'
 predicted_price_query = "SELECT LOWER(metal) AS material, model, prediction_date AS date, prediction_value AS price_predicted FROM predictions;"
 
 # Fetch data
@@ -175,9 +176,9 @@ else:
     
     
 
-    # # Display data tables
-    # st.subheader("Filtered Actual Prices")
-    # st.write(filtered_actual_price)
+#     # # Display data tables
+#     # st.subheader("Filtered Actual Prices")
+#     # st.write(filtered_actual_price)
 
-    # st.subheader("Filtered Predicted Prices")
-    # st.write(filtered_predicted_price)
+#     # st.subheader("Filtered Predicted Prices")
+#     # st.write(filtered_predicted_price)
